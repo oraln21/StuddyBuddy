@@ -2,8 +2,10 @@ extends layout
 
 block content
   h1 Browse by Topic
-  .tag-list
+  p Click a topic to filter study sessions.
+
+  .tag-grid
     each tag in tags
-      a.tag-chip(href="/sessions?tag=" + encodeURIComponent(tag.tag))
-        | #{tag.tag}
-        span  (#{tag.session_count})
+      a.tag-pill(href="/sessions?tag=" + encodeURIComponent(tag.tag))
+        span.tag-name= tag.tag
+        span.tag-count  (#{tag.count})

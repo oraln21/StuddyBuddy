@@ -1,27 +1,31 @@
 extends layout
 
 block content
-  .profile-container
+  .profile-header
     h1= user.first_name + ' ' + user.last_name
-    p.subtext #{user.university} | #{user.department} | #{user.academic_level}
-    if user.bio
-      p.bio= user.bio
+    p.meta #{user.university} &mdash; #{user.department}
+    p.meta Academic Level: #{user.academic_level}
+    p.bio= user.bio
 
+  section
     h2 Skills
     if skills.length
-      ul.skill-tags
-        each s in skills
-          li= s.skill_name + ' (' + s.proficiency_level + ')'
+      ul.skill-list
+        each skill in skills
+          li
+            span.skill-name= skill.skill_name
+            span.level  (#{skill.proficiency_level})
     else
-      p Not listed.
+      p No skills listed yet.
 
+  section
     h2 Enrolled Courses
     if courses.length
       table
         thead
           tr
             th Code
-            th Course Name
+            th Course
             th Semester
             th Year
         tbody
@@ -34,4 +38,4 @@ block content
     else
       p No courses found.
 
-  a.btn(href="/users") ← Back
+  a.btn(href="/users") &larr; Back to All Buddies
