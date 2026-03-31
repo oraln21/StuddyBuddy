@@ -1,22 +1,23 @@
 extends layout
 
 block content
-  .session-detail-view
+  article.detail-card
     h1= session.topic
     p 📍 #{session.location || 'Location TBD'}
-    p 📅 #{session.formatted_time}
-    p 👤 Organised by
+    p 📅 #{new Date(session.scheduled_time).toLocaleString('en-GB')}
+    p 👤 Hosted by
       a(href="/users/" + session.organiser_id)  #{session.first_name} #{session.last_name}
-    p Max participants: #{session.max_participants || 'Unlimited'}
+    p 👥 Max participants: #{session.max_participants || 'Unlimited'}
 
-    h2 Participants (#{participants.length})
+  section.section
+    h2 Who's Joining
     if participants.length
       ul
         each p in participants
           li
             a(href="/users/" + p.user_id)= p.first_name + ' ' + p.last_name
-            |  [#{p.status}]
+            |  – #{p.status}
     else
-      p No participants have joined yet.
+      p No participants yet.
 
-  a.btn(href="/sessions") ← Back to Sessions
+  a.btn(href="/sessions") ← All Sessions

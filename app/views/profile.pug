@@ -1,37 +1,41 @@
 extends layout
 
 block content
-  .profile-container
-    h1= user.first_name + ' ' + user.last_name
-    p.subtext #{user.university} | #{user.department} | #{user.academic_level}
-    if user.bio
-      p.bio= user.bio
+  .profile-page
+    .profile-card
+      h1= user.first_name + ' ' + user.last_name
+      p.label 🏛️ #{user.university} – #{user.department}
+      p.label 🎓 #{user.academic_level}
+      if user.bio
+        blockquote.bio= user.bio
 
-    h2 Skills
-    if skills.length
-      ul.skill-tags
-        each s in skills
-          li= s.skill_name + ' (' + s.proficiency_level + ')'
-    else
-      p Not listed.
+    section.section
+      h2 Skills
+      if skills.length
+        ul.tags
+          each skill in skills
+            li= skill.skill_name + ' (' + skill.proficiency_level + ')'
+      else
+        p No skills listed.
 
-    h2 Enrolled Courses
-    if courses.length
-      table
-        thead
-          tr
-            th Code
-            th Course Name
-            th Semester
-            th Year
-        tbody
-          each c in courses
+    section.section
+      h2 Courses
+      if courses.length
+        table
+          thead
             tr
-              td= c.course_code
-              td= c.course_name
-              td= c.semester
-              td= c.year
-    else
-      p No courses found.
+              th Code
+              th Name
+              th Semester
+              th Year
+          tbody
+            each c in courses
+              tr
+                td= c.course_code
+                td= c.course_name
+                td= c.semester
+                td= c.year
+      else
+        p Not enrolled in any courses.
 
-  a.btn(href="/users") ← Back
+  a.btn(href="/users") ← Back to Buddies

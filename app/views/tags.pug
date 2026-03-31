@@ -1,9 +1,10 @@
 extends layout
 
 block content
-  h1 Browse by Topic
-  .tag-list
+  h1 Browse Topics
+  p Click a topic to explore related study sessions.
+  .tag-cloud
     each tag in tags
-      a.tag-chip(href="/sessions?tag=" + encodeURIComponent(tag.tag))
+      a.tag(href="/sessions?tag=" + encodeURIComponent(tag.tag))
         | #{tag.tag}
-        span  (#{tag.session_count})
+        span.badge= tag.total

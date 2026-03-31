@@ -1,11 +1,17 @@
 extends layout
 
 block content
-  h1 Study Buddies Directory
-  .user-grid
+  h1 All Study Buddies
+  p.subtitle Find students to study with based on their department and academic level.
+
+  .grid
     each user in users
-      .user-card
-        h2= user.full_name
-        p 🎓 #{user.academic_level}
-        p 🏛️ #{user.department}, #{user.university}
-        a(href="/users/" + user.user_id) View Profile
+      .card
+        .card-header
+          h2= user.first_name + ' ' + user.last_name
+        .card-body
+          p 🎓 #{user.academic_level}
+          p 🏛️ #{user.department}
+          p 🌐 #{user.university}
+        .card-footer
+          a.btn(href="/users/" + user.user_id) View Profile →

@@ -1,13 +1,20 @@
 extends layout
 
 block content
-  h1 All Study Sessions
-  .sessions-grid
+  h1 Study Sessions
+  .filter-strip
+    a(href="/sessions") All
+    a(href="/tags") By Topic
+
+  .grid
     each session in sessions
-      .session-card
-        h2= session.topic
-        p 📍 #{session.location || 'TBD'}
-        p 📅 #{session.formatted_time}
-        p 👤 #{session.first_name} #{session.last_name}
-        p 👥 #{session.participants_joined}/#{session.max_participants || '∞'}
-        a.btn(href="/sessions/" + session.session_id) View Details
+      .card
+        .card-header
+          h2= session.topic
+        .card-body
+          p 📍 #{session.location || 'Location TBD'}
+          p 📅 #{new Date(session.scheduled_time).toLocaleString('en-GB')}
+          p 👤 #{session.first_name} #{session.last_name}
+          p 👥 #{session.joined}/#{session.max_participants || '∞'}
+        .card-footer
+          a.btn(href="/sessions/" + session.session_id) View →

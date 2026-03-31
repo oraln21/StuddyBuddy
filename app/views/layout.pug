@@ -3,16 +3,17 @@ html(lang="en")
   head
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title= title
+    title= title + " | StudyBuddy"
     link(rel="stylesheet" href="/style.css")
   body
-    nav.navbar
-      a.brand(href="/") 🤝 StudyBuddy
-      ul
-        li: a(href="/users") Browse Users
-        li: a(href="/sessions") Sessions
-        li: a(href="/tags") Topics
-    main
+    header
+      nav.navbar
+        a.brand(href="/") 📚 StudyBuddy
+        ul
+          li: a(href="/users") Browse Buddies
+          li: a(href="/sessions") Sessions
+          li: a(href="/tags") Topics
+    main.container
       block content
     footer
-      p &copy; 2026 StudyBuddy – Peer Support
+      p Study smart, together. &copy; 2026 StudyBuddy
